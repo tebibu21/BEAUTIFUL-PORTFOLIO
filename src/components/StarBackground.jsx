@@ -1,47 +1,32 @@
-import { useEffect, useState } from "react";
-
-// id, size, x, y, opacity, animationDuration
-// id, size, x, y, delay, animationDuration
+import { useEffect, useState, useCallback } from "react";
 
 export const StarBackground = () => {
   const [stars, setStars] = useState([]);
   const [meteors, setMeteors] = useState([]);
 
-  useEffect(() => {
-    generateStars();
-    generateMeteors();
-
-    const handleResize = () => {
-      generateStars();
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const generateStars = () => {
-    const numberOfStars = Math.floor(
-      (window.innerWidth * window.innerHeight) / 10000
+  const generateStars = useCallback(() => {
+    // Cap star count to 100 for smooth 60fps rendering across mobile and budget devices
+    const calculatedCount = Math.floor(
+      (window.innerWidth * window.innerHeight) / 14000
     );
+    const count = Math.min(Math.max(calculatedCount, 30), 100);
 
     const newStars = [];
-
-    for (let i = 0; i < numberOfStars; i++) {
+    for (let i = 0; i < count; i++) {
       newStars.push({
         id: i,
-        size: Math.random() * 3 + 1,
+        size: Math.random() * 2.5 + 1,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        opacity: Math.random() * 0.5 + 0.5,
+        opacity: Math.random() * 0.5 + 0.4,
         animationDuration: Math.random() * 4 + 2,
       });
     }
 
     setStars(newStars);
-  };
+  }, []);
 
-  const generateMeteors = () => {
+  const generateMeteors = useCallback(() => {
     const numberOfMeteors = 4;
     const newMeteors = [];
 
@@ -57,10 +42,30 @@ export const StarBackground = () => {
     }
 
     setMeteors(newMeteors);
-  };
+  }, []);
+
+  useEffect(() => {
+    generateStars();
+    generateMeteors();
+
+    // Debounced resize handler (250ms) to prevent thrashing DOM during window resize
+    let resizeTimer;
+    const handleResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        generateStars();
+      }, 250);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      clearTimeout(resizeTimer);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [generateStars, generateMeteors]);
 
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
       {stars.map((star) => (
         <div
           key={star.id}

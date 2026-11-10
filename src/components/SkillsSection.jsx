@@ -1,54 +1,72 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { Globe, Smartphone, Server, Wrench } from "lucide-react";
 
-const skills = [
-  // Frontend
-  { name: "HTML/CSS", level: 95, category: "frontend" },
-  { name: "JavaScript", level: 90, category: "frontend" },
-  { name: "React", level: 90, category: "frontend" },
-  // { name: "TypeScript", level: 85, category: "frontend" },
-  { name: "Tailwind CSS", level: 90, category: "frontend" },
-  // { name: "Next.js", level: 80, category: "frontend" },
-
-  // Backend
-  { name: "Node.js", level: 80, category: "backend" },
-  { name: "Express", level: 75, category: "backend" },
-  // { name: "MongoDB", level: 70, category: "backend" },
-  // { name: "PostgreSQL", level: 65, category: "backend" },
-  // { name: "GraphQL", level: 60, category: "backend" },
-
-  // Tools
-  { name: "Git/GitHub", level: 90, category: "tools" },
-  // { name: "Docker", level: 70, category: "tools" },
-  // { name: "Figma", level: 85, category: "tools" },
-  { name: "VS Code", level: 95, category: "tools" },
+const skillGroups = [
+  {
+    id: "web",
+    category: "web",
+    title: "Web Engineering",
+    icon: Globe,
+    description: "Modern full-stack web applications, scalable backends, and responsive user interfaces.",
+    skills: ["React", "Node.js", "Express", "PostgreSQL", "MongoDB", "PHP/MySQL"],
+  },
+  {
+    id: "mobile",
+    category: "mobile",
+    title: "Mobile Development",
+    icon: Smartphone,
+    description: "Cross-platform mobile applications with native device access and real-time backend synchronization.",
+    skills: ["Flutter", "React Native", "Expo", "Firebase"],
+  },
+  {
+    id: "systems",
+    category: "systems & networking",
+    title: "Systems & Networking",
+    icon: Server,
+    description: "Enterprise network design, Linux server administration, access control, and network security.",
+    skills: ["Linux", "Apache", "LVM", "SELinux", "Firewalls", "Cisco Packet Tracer"],
+  },
+  {
+    id: "tools",
+    category: "tools",
+    title: "Developer Tools",
+    icon: Wrench,
+    description: "Essential toolchains for version control, collaborative development, and efficient engineering workflows.",
+    skills: ["Git/GitHub", "VS Code"],
+  },
 ];
 
-const categories = ["all", "frontend", "backend", "tools"];
+const categories = ["all", "web", "mobile", "systems & networking", "tools"];
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
 
-  const filteredSkills = skills.filter(
-    (skill) => activeCategory === "all" || skill.category === activeCategory
+  const filteredGroups = skillGroups.filter(
+    (group) => activeCategory === "all" || group.category === activeCategory
   );
+
   return (
     <section id="skills" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          My <span className="text-primary"> Skills</span>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+          Technical <span className="text-primary">Skills</span>
         </h2>
+        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto text-sm md:text-base">
+          A structured overview of the frameworks, platforms, systems, and tools I use to build complete digital solutions.
+        </p>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category, key) => (
+        {/* Category Filters */}
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12">
+          {categories.map((category) => (
             <button
-              key={key}
+              key={category}
               onClick={() => setActiveCategory(category)}
               className={cn(
-                "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
+                "px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 capitalize cursor-pointer",
                 activeCategory === category
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary/70 text-forefround hover:bd-secondary"
+                  ? "bg-primary text-primary-foreground shadow-[0_0_12px_rgba(139,92,246,0.4)] scale-105"
+                  : "bg-card text-foreground/80 hover:text-primary hover:bg-card/80 border border-border"
               )}
             >
               {category}
@@ -56,29 +74,49 @@ export const SkillsSection = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredSkills.map((skill, key) => (
-            <div
-              key={key}
-              className="bg-card p-6 rounded-lg shadow-xs card-hover"
-            >
-              <div className="text-left mb-4">
-                <h3 className="font-semibold text-lg"> {skill.name}</h3>
-              </div>
-              <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden">
-                <div
-                  className="bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out]"
-                  style={{ width: skill.level + "%" }}
-                />
-              </div>
+        {/* Grouped Badge Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {filteredGroups.map((group) => {
+            const IconComponent = group.icon;
+            return (
+              <div
+                key={group.id}
+                className="gradient-border p-6 bg-card card-hover text-left flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2.5 rounded-xl bg-primary/10 text-primary">
+                      <IconComponent className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg text-foreground">
+                        {group.title}
+                      </h3>
+                      <span className="text-xs uppercase tracking-wider text-primary font-medium">
+                        {group.category}
+                      </span>
+                    </div>
+                  </div>
 
-              <div className="text-right mt-1">
-                <span className="text-sm text-muted-foreground">
-                  {skill.level}%
-                </span>
+                  <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+                    {group.description}
+                  </p>
+                </div>
+
+                {/* Skill Badges */}
+                <div className="flex flex-wrap gap-2 pt-2 border-t border-border/50">
+                  {group.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-3 py-1.5 rounded-lg text-xs font-medium bg-secondary text-foreground border border-border/60 hover:border-primary/50 hover:bg-primary/10 transition-colors"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,43 +1,66 @@
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Download, Sparkles } from "lucide-react";
 
 export const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center px-4"
+      className="relative min-h-screen flex flex-col items-center justify-center px-4 pt-20"
     >
       <div className="container max-w-4xl mx-auto text-center z-10">
         <div className="space-y-6">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-            <span className="opacity-0 animate-fade-in"> Hi, I'm</span>
-            <span className="text-primary opacity-0 animate-fade-in-delay-1">
-              {" "}
-              Tebibu
+          {/* Availability Pill */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs sm:text-sm font-medium animate-fade-in">
+            <Sparkles className="h-4 w-4 text-primary animate-pulse" />
+            <span>Available for software development opportunities & collaborative projects</span>
+          </div>
+
+          {/* Main Headline */}
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight">
+            <span className="block opacity-0 animate-fade-in text-foreground">
+              Tebibu Solomon
             </span>
-            <span className="text-gradient ml-2 opacity-0 animate-fade-in-delay-2">
-              {" "}
-              Solomon
+            <span className="block text-2xl sm:text-4xl md:text-5xl font-extrabold text-gradient mt-2 opacity-0 animate-fade-in-delay-1">
+              Building Software That Solves Real-World Problems.
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            I create stellar web experiences with modern technologies.
-            Specializing in front-end development, I build interfaces that are
-            both beautiful and functional.
+          {/* Subline - no tech stack focus, value & engineering focused */}
+          <p className="text-lg md:text-xl font-medium text-foreground/90 max-w-2xl mx-auto opacity-0 animate-fade-in-delay-2">
+            Engineering scalable, reliable, and user-focused digital solutions designed to deliver seamless experiences and tangible impact.
           </p>
 
-          <div className="pt-4 opacity-0 animate-fade-in-delay-4">
-            <a href="#projects" className="cosmic-button">
+          {/* Professional Description */}
+          <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in-delay-3">
+            I transform complex challenges into practical software solutions through problem-solving, thoughtful system design, and effective implementation.
+          </p>
+
+          {/* Action Buttons */}
+          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-in-delay-4">
+            <a href="#projects" className="cosmic-button w-full sm:w-auto">
               View My Work
+            </a>
+            <a
+              href="/cv.pdf"
+              download="Tebibu_Solomon_CV.pdf"
+              className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300 flex items-center justify-center gap-2 w-full sm:w-auto"
+              aria-label="Download Tebibu Solomon CV"
+            >
+              <Download className="h-4 w-4" />
+              <span>Download CV</span>
             </a>
           </div>
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
-        <span className="text-sm text-muted-foreground mb-2"> Scroll </span>
-        <ArrowDown className="h-5 w-5 text-primary" />
-      </div>
+      {/* Scroll Down Indicator */}
+      <a
+        href="#about"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce text-muted-foreground hover:text-primary transition-colors"
+        aria-label="Scroll to About section"
+      >
+        <span className="text-xs mb-1">Explore</span>
+        <ArrowDown className="h-4 w-4 text-primary" />
+      </a>
     </section>
   );
 };
