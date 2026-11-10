@@ -25,7 +25,8 @@ function getOfflineResponse(userQuery) {
 2. **Real-Time Mobile Chat App:** Cross-platform messaging built with React Native (Expo SDK 54) and Firebase Firestore for instant synchronization.
 3. **CBETECH Network Infrastructure:** A simulated 4-site enterprise network (Addis Ababa, Adama, Hawassa, Mekelle) using Cisco Packet Tracer with OSPF, BGP, GRE tunnels, and security ACLs.
 4. **Question-Forum:** A MERN-stack collaborative Q&A platform with JWT authentication.
-5. **Netflix Clone:** A responsive frontend client integrating the TMDB API.`,
+5. **Netflix Clone:** A responsive frontend client integrating the TMDB API.
+6. **Amazon Clone:** Full-featured e-commerce platform with cart and Stripe payment integration.`,
       actions: [
         { label: "View Projects Section", action: "scroll-projects" },
         { label: "Explore GitHub", action: "link-github", href: portfolioKnowledge.contact.github },
@@ -78,7 +79,7 @@ Here is how you can get in touch directly:
 • **Email:** [${portfolioKnowledge.contact.email}](mailto:${portfolioKnowledge.contact.email})
 • **Phone:** [${portfolioKnowledge.contact.phone}](tel:${portfolioKnowledge.contact.phone})
 • **Location:** ${portfolioKnowledge.contact.location}
-• **Telegram:** [@telegram24](https://t.me/telegram24)
+• **Telegram:** [@telegram24](https://t.me/tebibu24)
 • **LinkedIn:** [Tebibu Solomon](https://www.linkedin.com/in/tebibusolomon/)`,
       actions: [
         { label: "Open Contact Form", action: "scroll-contact" },
@@ -146,53 +147,63 @@ What would you like to explore?`,
  */
 export async function sendChatMessage(messages) {
   const lastUserMessage = messages[messages.length - 1]?.text || "";
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  const apiKey =
+    import.meta.env.VITE_GEMINI_API_KEY ||
+    import.meta.env.GEMINI_API_KEY;
 
   if (apiKey) {
-    try {
-      // Call Google Gemini API
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [
-              {
-                role: "user",
-                parts: [
-                  {
-                    text: `${systemPrompt}\n\nKnowledge base:\n${JSON.stringify(
-                      portfolioKnowledge
-                    )}\n\nUser Question:\n${lastUserMessage}`,
-                  },
-                ],
-              },
-            ],
-          }),
-        }
-      );
+    const candidateModels = [
+      "gemini-3.8-flash",
+      "gemini-3.5-flash",
+      "gemini-flash-latest",
+      "gemini-3.1-flash-lite",
+    ];
 
-      if (response.ok) {
-        const data = await response.json();
-        const candidateText =
-          data.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (candidateText) {
-          return {
-            text: candidateText,
-            actions: [
-              { label: "View Projects", action: "scroll-projects" },
-              { label: "Contact Tebibu", action: "scroll-contact" },
-            ],
-          };
+    for (const model of candidateModels) {
+      try {
+        const response = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              contents: [
+                {
+                  role: "user",
+                  parts: [
+                    {
+                      text: `${systemPrompt}\n\nPortfolio Knowledge Base:\n${JSON.stringify(
+                        portfolioKnowledge
+                      )}\n\nUser Question: ${lastUserMessage}`,
+                    },
+                  ],
+                },
+              ],
+            }),
+          }
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          const candidateText =
+            data.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (candidateText) {
+            return {
+              text: candidateText,
+              actions: [
+                { label: "View Projects", action: "scroll-projects" },
+                { label: "Contact Tebibu", action: "scroll-contact" },
+              ],
+            };
+          }
         }
+      } catch {
+        // Continue to next candidate model or fallback
       }
-    } catch {
-      // Gracefully fall through to smart offline engine if API call fails
     }
   }
 
-  // Offline Engine fallback
+  // Smart Offline Engine fallback
   return getOfflineResponse(lastUserMessage);
 }
 

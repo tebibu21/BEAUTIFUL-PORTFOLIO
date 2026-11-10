@@ -88,6 +88,14 @@ export const portfolioKnowledge = {
         "Responsive movie exploration client consuming TMDB REST APIs with category rows, search, and YouTube trailer integration.",
       repo: "https://github.com/tebibu21/netflix-clone",
     },
+    {
+      name: "Amazon E-Commerce Platform Clone",
+      category: "Full-Stack Web Platform",
+      stack: ["React", "Firebase", "Stripe", "Next.js", "JavaScript"],
+      summary:
+        "Full-featured e-commerce platform with user authentication, shopping cart state management, and Stripe checkout processing.",
+      repo: "https://github.com/tebibu21/Amazon-Clone/",
+    },
   ],
   experienceHighlights: [
     "Software Development Intern at Commercial Bank of Ethiopia (CBE)",

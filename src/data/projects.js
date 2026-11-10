@@ -11,7 +11,7 @@ export const projects = [
     stack: ["React", "Vite", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
     challenge:
       "Architecting bidirectional conversion between the Ethiopian calendar system and ISO UTC timestamps to ensure chronological integrity across international databases.",
-    image: "/projects/project1.png",
+    image: "/projects/A-Mesob Multi-Office Reporting System.png",
     demoUrl: null,
     githubUrl: null,
     isCaseStudy: true,
@@ -28,7 +28,7 @@ export const projects = [
     stack: ["React Native", "Expo SDK 54", "Firebase", "Firestore", "JavaScript"],
     challenge:
       "Overcoming Firebase Storage plan quota limits during the submission milestone by gracefully gating media uploads to prioritize core messaging performance and real-time socket reliability.",
-    image: "/projects/project2.png",
+    image: "/projects/Real-Time Chat App Showcase.png",
     demoUrl: null,
     githubUrl: null,
     isCaseStudy: true,
@@ -45,7 +45,7 @@ export const projects = [
     stack: ["Cisco Packet Tracer", "OSPF", "BGP", "GRE Tunnels", "VLANs", "DHCP", "NAT/PAT", "ACLs"],
     challenge:
       "Configuring GRE over IPsec tunneling combined with multi-area OSPF redistribution and restrictive ACL rules without introducing routing loops or packet drop on inter-branch traffic.",
-    image: "/projects/project3.png",
+    image: "/projects/CBE Networking Project Infographic.png",
     demoUrl: null,
     githubUrl: null,
     isCaseStudy: true,
@@ -84,5 +84,21 @@ export const projects = [
     githubUrl: "https://github.com/tebibu21/netflix-clone",
     isCaseStudy: false,
   },
+  {
+    id: "amazon-clone",
+    title: "Amazon E-Commerce Platform Clone",
+    subtitle: "Full-Featured Storefront with Cart & Stripe Checkout",
+    problem:
+      "Building a complete modern e-commerce checkout flow with real-time shopping cart state, user authentication, and secure payment processing.",
+    whatIBuilt:
+      "A full-featured e-commerce web platform integrating Firebase user authentication, responsive product catalog, cart item persistence, and Stripe payment processing.",
+    role: "Full-Stack Developer managing component state, Firebase auth integration, and Stripe checkout logic.",
+    stack: ["React", "Firebase", "Stripe", "Next.js", "JavaScript"],
+    challenge:
+      "Securely processing checkout sessions with Stripe webhooks while keeping cart state in sync across authentication state transitions.",
+    image: "/projects/project2.png",
+    demoUrl: null,
+    githubUrl: "https://github.com/tebibu21/Amazon-Clone/",
+    isCaseStudy: false,
+  },
 ];
-

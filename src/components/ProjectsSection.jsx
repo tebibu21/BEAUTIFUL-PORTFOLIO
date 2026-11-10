@@ -1,4 +1,4 @@
-import { ArrowRight, ExternalLink, Github, Layers, AlertCircle } from "lucide-react";
+import { ArrowRight, ExternalLink, Github, AlertCircle } from "lucide-react";
 import { projects } from "@/data/projects";
 
 export const ProjectsSection = () => {
@@ -19,17 +19,22 @@ export const ProjectsSection = () => {
               key={project.id}
               className="group bg-card rounded-xl overflow-hidden border border-border shadow-xs card-hover flex flex-col justify-between text-left"
             >
-              {/* Card Header & Preview Placeholder */}
               <div>
-                <div className="relative h-44 bg-secondary/60 flex flex-col items-center justify-center p-4 border-b border-border overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent z-10" />
-                  <Layers className="h-10 w-10 text-primary/40 mb-2 z-0" />
-                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-primary/20 text-primary z-20">
-                    {project.isCaseStudy ? "Engineered Case Study" : "Repository Showcase"}
-                  </span>
-                  <span className="text-[10px] text-muted-foreground mt-1.5 z-20">
-                    [TODO: Screenshot Preview]
-                  </span>
+                {/* Project Screenshot Banner */}
+                <div className="relative h-48 sm:h-56 w-full overflow-hidden bg-secondary/30 border-b border-border">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/15 to-transparent opacity-90" />
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-background/90 backdrop-blur-md text-primary border border-primary/30 shadow-xs">
+                      {project.isCaseStudy ? "Engineered Case Study" : "Application"}
+                    </span>
+                  </div>
                 </div>
 
                 <div className="p-6 space-y-4">
