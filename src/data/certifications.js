@@ -20,3 +20,4 @@ export const certifications = [
       "Multi-site network architecture simulation covering OSPF, BGP, GRE tunneling, VLANs, and security ACLs in Cisco Packet Tracer.",
   },
 ];
+
