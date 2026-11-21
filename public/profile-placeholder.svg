@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0F19"/>
+      <stop offset="50%" stop-color="#161F2D"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" rx="40" fill="url(#bg)"/>
+  <circle cx="200" cy="200" r="160" fill="none" stroke="url(#ring)" stroke-width="4" stroke-dasharray="12 8" opacity="0.4"/>
+  <circle cx="200" cy="200" r="140" fill="#161F2D" stroke="#273449" stroke-width="2"/>
+  
+  <!-- Stylized Developer Silhouette / Monogram -->
+  <circle cx="200" cy="155" r="48" fill="url(#accent)"/>
+  <path d="M110 300 C110 235 150 215 200 215 C250 215 290 235 290 300" fill="url(#accent)" opacity="0.9"/>
+  
+  <!-- Initials Badge -->
+  <rect x="150" y="315" width="100" height="30" rx="15" fill="#0B0F19" stroke="#3B82F6" stroke-width="1.5"/>
+  <text x="200" y="335" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#F9FAFB" text-anchor="middle" letter-spacing="1.5">TEBIBU S.</text>
+</svg>

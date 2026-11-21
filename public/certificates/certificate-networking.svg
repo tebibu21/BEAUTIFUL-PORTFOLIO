@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A192F"/>
+      <stop offset="100%" stop-color="#172A45"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" rx="16" fill="url(#bg)" stroke="#1E3A8A" stroke-width="3"/>
+  <rect x="20" y="20" width="560" height="360" rx="10" fill="none" stroke="#0284C7" stroke-width="1.5" stroke-dasharray="8 6" opacity="0.6"/>
+  
+  <text x="300" y="140" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="700" fill="#F8FAFC" text-anchor="middle">ENTERPRISE NETWORK TOPOLOGY DESIGN</text>
+  <text x="300" y="175" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#94A3B8" text-anchor="middle">Cisco Packet Tracer Architecture &amp; Protocol Simulation</text>
+  
+  <text x="300" y="225" font-family="Inter, system-ui, sans-serif" font-size="20" font-weight="800" fill="#38BDF8" text-anchor="middle">CBETECH Multi-Branch Infrastructure</text>
+  <text x="300" y="260" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#CBD5E1" text-anchor="middle">OSPF • BGP • GRE • VLANs • DHCP • NAT/PAT • ACLs</text>
+  
+  <rect x="210" y="295" width="180" height="32" rx="16" fill="#0F172A" stroke="#38BDF8" stroke-width="1"/>
+  <text x="300" y="316" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600" fill="#7DD3FC" text-anchor="middle">PROJECT SPECIFICATION</text>
+</svg>

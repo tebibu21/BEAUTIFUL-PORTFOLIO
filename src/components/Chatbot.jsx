@@ -16,10 +16,11 @@ const initialMessages = [
   {
     id: "welcome",
     sender: "assistant",
-    text: `Hi there! 👋 I'm **Tebibu's AI Portfolio Assistant**.\n\nAsk me anything about his technical stack, case studies, or hiring availability!`,
+    text: `Hi there! 👋 I'm **Tebibu's AI Portfolio Assistant**.\n\nAsk me anything about his technical stack, case studies, academic background, or hiring availability!`,
     actions: [
       { label: "🚀 Top Projects", action: "scroll-projects" },
       { label: "🛠️ Tech Stack", action: "scroll-skills" },
+      { label: "💼 Experience", action: "scroll-experience" },
       { label: "📄 Download CV", action: "download-cv", href: "/cv.pdf" },
       { label: "📫 Contact Tebibu", action: "scroll-contact" },
     ],
@@ -53,6 +54,8 @@ export const Chatbot = () => {
       document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
     } else if (actionItem.action === "scroll-skills") {
       document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
+    } else if (actionItem.action === "scroll-experience") {
+      document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" });
     } else if (actionItem.action === "scroll-about") {
       document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
     } else if (actionItem.action === "scroll-contact") {
@@ -60,7 +63,7 @@ export const Chatbot = () => {
     } else if (actionItem.action === "download-cv") {
       const link = document.createElement("a");
       link.href = "/cv.pdf";
-      link.download = "Tebibu_Solomon_CV.pdf";
+      link.download = "Tebibu-Solomon-Software-Developer-CV.pdf";
       link.click();
     } else if (actionItem.href) {
       window.open(actionItem.href, "_blank", "noopener,noreferrer");
@@ -126,6 +129,7 @@ export const Chatbot = () => {
   const quickPrompts = [
     "Tell me about your top projects",
     "What is your tech stack?",
+    "Tell me about your experience at CBE",
     "Are you open to internships?",
     "How can I contact Tebibu?",
   ];
@@ -152,7 +156,7 @@ export const Chatbot = () => {
             "h-14 w-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-xl cursor-pointer relative",
             isOpen
               ? "bg-secondary text-foreground hover:bg-secondary/80 scale-95"
-              : "bg-primary text-primary-foreground hover:scale-105 shadow-[0_0_20px_rgba(139,92,246,0.6)]"
+              : "bg-primary text-primary-foreground hover:scale-105 shadow-[0_0_20px_rgba(59,130,246,0.5)]"
           )}
           aria-label={isOpen ? "Close AI Chatbot" : "Open AI Chatbot"}
         >
@@ -315,4 +319,3 @@ export const Chatbot = () => {
     </>
   );
 };
-

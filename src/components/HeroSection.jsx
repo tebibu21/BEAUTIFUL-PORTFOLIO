@@ -1,65 +1,127 @@
-import { ArrowDown, Download, Sparkles } from "lucide-react";
+import { ArrowDown, Download, MapPin, Sparkles, FolderGit2, Mail } from "lucide-react";
 
 export const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center px-4 pt-20"
+      className="relative min-h-screen flex flex-col items-center justify-center px-4 pt-28 pb-16"
     >
-      <div className="container max-w-4xl mx-auto text-center z-10">
-        <div className="space-y-6">
-          {/* Availability Pill */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs sm:text-sm font-medium animate-fade-in">
-            <Sparkles className="h-4 w-4 text-primary animate-pulse" />
-            <span>Available for software development opportunities & collaborative projects</span>
+      <div className="container max-w-5xl mx-auto z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          {/* Left Column: Headline, Bio & Actions */}
+          <div className="lg:col-span-7 space-y-6 text-left">
+            {/* Availability & Location Pills */}
+            <div className="flex flex-wrap items-center gap-2.5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-semibold">
+                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Open to Internships &amp; Junior Roles</span>
+              </div>
+
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-border bg-card text-muted-foreground text-xs font-medium">
+                <MapPin className="h-3 w-3 text-primary" />
+                <span>Addis Ababa, Ethiopia</span>
+              </div>
+            </div>
+
+            {/* Name and Professional Title */}
+            <div>
+              <p className="text-sm font-semibold tracking-wide text-primary uppercase mb-1">
+                Software Engineer
+              </p>
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-[1.15]">
+                Tebibu Solomon
+              </h1>
+              <h2 className="text-xl sm:text-2xl font-bold text-gradient mt-2">
+                Full-Stack &amp; Mobile Software Developer
+              </h2>
+            </div>
+
+            {/* Introduction Copy */}
+            <p className="text-base sm:text-lg text-foreground/80 leading-relaxed font-normal">
+              I build modern web applications and cross-platform mobile experiences using
+              React, Next.js, Node.js, React Native, and modern backend technologies.
+              I focus on developing practical, scalable software solutions that solve real-world problems.
+            </p>
+
+            {/* Quick Tech Highlights */}
+            <div className="flex flex-wrap items-center gap-2 pt-1 text-xs">
+              <span className="text-muted-foreground font-medium mr-1">Core Stack:</span>
+              {["React", "Next.js", "Node.js", "React Native", "Firebase", "MongoDB"].map((tech) => (
+                <span
+                  key={tech}
+                  className="px-2.5 py-1 rounded-md bg-secondary text-foreground font-medium border border-border/80"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            {/* Action Buttons */}
+            <div className="pt-3 flex flex-wrap items-center gap-3">
+              <a
+                href="#projects"
+                className="primary-button"
+                aria-label="View Tebibu Solomon's Projects"
+              >
+                <FolderGit2 className="h-4 w-4" />
+                <span>View My Projects</span>
+              </a>
+
+              <a
+                href="/cv.pdf"
+                download="Tebibu-Solomon-Software-Developer-CV.pdf"
+                className="secondary-button"
+                aria-label="Download Tebibu Solomon CV"
+              >
+                <Download className="h-4 w-4" />
+                <span>Download My CV</span>
+              </a>
+
+              <a
+                href="#contact"
+                className="secondary-button"
+                aria-label="Contact Tebibu Solomon"
+              >
+                <Mail className="h-4 w-4" />
+                <span>Contact Me</span>
+              </a>
+            </div>
           </div>
 
-          {/* Main Headline */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight">
-            <span className="block opacity-0 animate-fade-in text-foreground">
-              Tebibu Solomon
-            </span>
-            <span className="block text-2xl sm:text-4xl md:text-5xl font-extrabold text-gradient mt-2 opacity-0 animate-fade-in-delay-1">
-              Building Software That Solves Real-World Problems.
-            </span>
-          </h1>
+          {/* Right Column: Profile Image / Visual Representation */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+            <div className="relative group">
+              {/* Subtle Ambient Border Glow */}
+              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-blue-600 to-indigo-600 opacity-20 blur-xl group-hover:opacity-30 transition-opacity" />
 
-          {/* Subline - no tech stack focus, value & engineering focused */}
-          <p className="text-lg md:text-xl font-medium text-foreground/90 max-w-2xl mx-auto opacity-0 animate-fade-in-delay-2">
-            Engineering scalable, reliable, and user-focused digital solutions designed to deliver seamless experiences and tangible impact.
-          </p>
-
-          {/* Professional Description */}
-          <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            I transform complex challenges into practical software solutions through problem-solving, thoughtful system design, and effective implementation.
-          </p>
-
-          {/* Action Buttons */}
-          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-in-delay-4">
-            <a href="#projects" className="cosmic-button w-full sm:w-auto">
-              View My Work
-            </a>
-            <a
-              href="/cv.pdf"
-              download="Tebibu_Solomon_CV.pdf"
-              className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300 flex items-center justify-center gap-2 w-full sm:w-auto"
-              aria-label="Download Tebibu Solomon CV"
-            >
-              <Download className="h-4 w-4" />
-              <span>Download CV</span>
-            </a>
+              {/* Card Container */}
+              <div className="relative rounded-2xl bg-card border border-border p-3 shadow-lg max-w-[320px] sm:max-w-[340px]">
+                <div className="relative rounded-xl overflow-hidden bg-secondary aspect-square flex items-center justify-center">
+                  <img
+                    src="/profile-placeholder.svg"
+                    alt="Tebibu Solomon - Full-Stack & Mobile Software Developer"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
+                    loading="eager"
+                  />
+                  <div className="absolute bottom-2 left-2 right-2 p-2.5 rounded-lg bg-background/90 backdrop-blur-md border border-border text-left">
+                    <p className="text-xs font-bold text-foreground">Tebibu Solomon</p>
+                    <p className="text-[11px] text-muted-foreground">Information Science, AAU</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Scroll Down Indicator */}
+      {/* Explore Indicator */}
       <a
         href="#about"
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce text-muted-foreground hover:text-primary transition-colors"
-        aria-label="Scroll to About section"
+        className="mt-12 inline-flex flex-col items-center gap-1 text-muted-foreground hover:text-primary transition-colors text-xs font-medium cursor-pointer"
+        aria-label="Scroll to About Section"
       >
-        <span className="text-xs mb-1">Explore</span>
-        <ArrowDown className="h-4 w-4 text-primary" />
+        <span>Discover More</span>
+        <ArrowDown className="h-4 w-4 animate-bounce" />
       </a>
     </section>
   );

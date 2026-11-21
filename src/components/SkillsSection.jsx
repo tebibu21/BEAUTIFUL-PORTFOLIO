@@ -1,114 +1,98 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Globe, Smartphone, Server, Wrench } from "lucide-react";
+import { skillCategories } from "@/data/skills";
+import { Code, Layout, Server, Smartphone, Database, Wrench, ShieldCheck } from "lucide-react";
 
-const skillGroups = [
-  {
-    id: "web",
-    category: "web",
-    title: "Web Engineering",
-    icon: Globe,
-    description: "Modern full-stack web applications, scalable backends, and responsive user interfaces.",
-    skills: ["React", "Node.js", "Express", "PostgreSQL", "MongoDB", "PHP/MySQL"],
-  },
-  {
-    id: "mobile",
-    category: "mobile",
-    title: "Mobile Development",
-    icon: Smartphone,
-    description: "Cross-platform mobile applications with native device access and real-time backend synchronization.",
-    skills: ["Flutter", "React Native", "Expo", "Firebase"],
-  },
-  {
-    id: "systems",
-    category: "systems & networking",
-    title: "Systems & Networking",
-    icon: Server,
-    description: "Enterprise network design, Linux server administration, access control, and network security.",
-    skills: ["Linux", "Apache", "LVM", "SELinux", "Firewalls", "Cisco Packet Tracer"],
-  },
-  {
-    id: "tools",
-    category: "tools",
-    title: "Developer Tools",
-    icon: Wrench,
-    description: "Essential toolchains for version control, collaborative development, and efficient engineering workflows.",
-    skills: ["Git/GitHub", "VS Code"],
-  },
-];
-
-const categories = ["all", "web", "mobile", "systems & networking", "tools"];
+const categoryIcons = {
+  languages: Code,
+  frontend: Layout,
+  backend: Server,
+  mobile: Smartphone,
+  databases: Database,
+  tools: Wrench,
+  practices: ShieldCheck,
+};
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
 
-  const filteredGroups = skillGroups.filter(
-    (group) => activeCategory === "all" || group.category === activeCategory
+  const filteredCategories = skillCategories.filter(
+    (cat) => activeCategory === "all" || cat.id === activeCategory
   );
 
   return (
-    <section id="skills" className="py-24 px-4 relative bg-secondary/30">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Technical <span className="text-primary">Skills</span>
-        </h2>
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto text-sm md:text-base">
-          A structured overview of the frameworks, platforms, systems, and tools I use to build complete digital solutions.
-        </p>
+    <section id="skills" className="py-24 px-4 relative">
+      <div className="container max-w-5xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <span className="text-xs uppercase font-bold tracking-wider text-primary">
+            Technical Competencies
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mt-1">
+            Engineering Skills &amp; Toolchain
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground mt-2">
+            Organized across 7 technical domains, emphasizing modern web, mobile, database, and system architecture capabilities.
+          </p>
+        </div>
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12">
-          {categories.map((category) => (
+        {/* Filter Pills */}
+        <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-12">
+          <button
+            onClick={() => setActiveCategory("all")}
+            className={cn(
+              "px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer",
+              activeCategory === "all"
+                ? "bg-primary text-primary-foreground shadow-xs"
+                : "bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary"
+            )}
+          >
+            All Disciplines
+          </button>
+          {skillCategories.map((cat) => (
             <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
               className={cn(
-                "px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 capitalize cursor-pointer",
-                activeCategory === category
-                  ? "bg-primary text-primary-foreground shadow-[0_0_12px_rgba(139,92,246,0.4)] scale-105"
-                  : "bg-card text-foreground/80 hover:text-primary hover:bg-card/80 border border-border"
+                "px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer",
+                activeCategory === cat.id
+                  ? "bg-primary text-primary-foreground shadow-xs"
+                  : "bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary"
               )}
             >
-              {category}
+              {cat.title}
             </button>
           ))}
         </div>
 
-        {/* Grouped Badge Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {filteredGroups.map((group) => {
-            const IconComponent = group.icon;
+        {/* 7-Domain Card Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredCategories.map((cat) => {
+            const IconComponent = categoryIcons[cat.id] || Code;
             return (
               <div
-                key={group.id}
-                className="gradient-border p-6 bg-card card-hover text-left flex flex-col justify-between"
+                key={cat.id}
+                className="rounded-xl bg-card border border-border p-5 text-left flex flex-col justify-between shadow-xs card-hover"
               >
                 <div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="p-2.5 rounded-xl bg-primary/10 text-primary">
-                      <IconComponent className="h-6 w-6" />
+                  <div className="flex items-center gap-3 mb-2.5">
+                    <div className="p-2.5 rounded-lg bg-primary/10 text-primary">
+                      <IconComponent className="h-5 w-5" />
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-lg text-foreground">
-                        {group.title}
-                      </h3>
-                      <span className="text-xs uppercase tracking-wider text-primary font-medium">
-                        {group.category}
-                      </span>
-                    </div>
+                    <h3 className="font-bold text-sm text-foreground">{cat.title}</h3>
                   </div>
 
-                  <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
-                    {group.description}
+                  <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
+                    {cat.description}
                   </p>
                 </div>
 
                 {/* Skill Badges */}
-                <div className="flex flex-wrap gap-2 pt-2 border-t border-border/50">
-                  {group.skills.map((skill) => (
+                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-border/60">
+                  {cat.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-3 py-1.5 rounded-lg text-xs font-medium bg-secondary text-foreground border border-border/60 hover:border-primary/50 hover:bg-primary/10 transition-colors"
+                      className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-muted/60 text-foreground border border-border/80 hover:border-primary transition-colors"
                     >
                       {skill}
                     </span>

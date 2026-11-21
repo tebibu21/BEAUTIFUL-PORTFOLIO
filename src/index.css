@@ -1,130 +1,113 @@
 @import "tailwindcss";
 
 @theme {
-  --color-border: hsl(var(--border));
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
+  --color-border: var(--border);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
 
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
 
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
 
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
 
-  --color-card: hsl(var(--card));
-  --color-input: hsl(var(--input));
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-input: var(--input);
+
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-pulse-subtle: pulse-subtle 4s ease-in-out infinite;
-  --animate-fade-in: fade-in 0.7s ease-out forwards;
-  --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
-  --animate-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forwards;
-  --animate-fade-in-delay-3: fade-in 0.7s ease-out 0.6s forwards;
-  --animate-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forwards;
-  --animate-meteor: meteor 5s linear infinite;
+  --animate-fade-in: fade-in 0.6s ease-out forwards;
+  --animate-fade-in-delay-1: fade-in 0.6s ease-out 0.15s forwards;
+  --animate-fade-in-delay-2: fade-in 0.6s ease-out 0.3s forwards;
+  --animate-fade-in-delay-3: fade-in 0.6s ease-out 0.45s forwards;
+  --animate-fade-in-delay-4: fade-in 0.6s ease-out 0.6s forwards;
 
   @keyframes float {
-    0%,
-    100% {
+    0%, 100% {
       transform: translateY(0);
     }
     50% {
-      transform: translateY(-10px);
+      transform: translateY(-8px);
     }
   }
   @keyframes pulse-subtle {
-    0%,
-    100% {
+    0%, 100% {
       opacity: 1;
     }
     50% {
-      opacity: 0.8;
+      opacity: 0.85;
     }
   }
   @keyframes fade-in {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(16px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-  @keyframes meteor {
-    0% {
-      transform: rotate(215deg) translateX(0);
-      opacity: 1;
-    }
-    70% {
-      opacity: 1;
-    }
-    100% {
-      transform: rotate(215deg) translateX(-500px);
-      opacity: 0;
-    }
-  }
 }
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
-
-    --card: 0 0% 100%;
-
-    --primary: 250 47% 60%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 93%;
-    --secondary-foreground: 222 47% 11%;
-
-    --muted: 210 40% 93%;
-    --muted-foreground: 215 16% 47%;
-
-    --border: 214 32% 91%;
-    --input: 214 32% 88%;
+    /* Master Light Theme Specification */
+    --background: #F8FAFC;
+    --secondary: #FFFFFF;
+    --card: #FFFFFF;
+    --card-foreground: #111827;
+    --foreground: #111827;
+    --muted: #F1F5F9;
+    --muted-foreground: #64748B;
+    --primary: #2563EB;
+    --primary-foreground: #FFFFFF;
+    --border: #E2E8F0;
+    --input: #E2E8F0;
   }
 
   .dark {
-    --background: 222 47% 4%;
-    --foreground: 213 31% 91%;
-
-    --card: 222 47% 8%;
-
-    --primary: 250 65% 65%;
-    --primary-foreground: 213 31% 91%;
-
-    --secondary: 222 47% 12%;
-    --secondary-foreground: 213 31% 91%;
-
-    --muted: 222 47% 12%;
-    --muted-foreground: 215 20% 65%;
-
-    --border: 217 33% 20%;
-    --input: 217 33% 20%;
+    /* Master Dark Theme Specification */
+    --background: #0B0F19;
+    --secondary: #111827;
+    --card: #161F2D;
+    --card-foreground: #F9FAFB;
+    --foreground: #F9FAFB;
+    --muted: #111827;
+    --muted-foreground: #9CA3AF;
+    --primary: #3B82F6;
+    --primary-foreground: #FFFFFF;
+    --border: #273449;
+    --input: #273449;
   }
 
   * {
-    @apply border-border;
+    border-color: var(--border);
   }
 
   html {
-    @apply scroll-smooth;
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
   }
 
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    background-color: var(--background);
+    color: var(--foreground);
+    transition: background-color 0.25s ease, color 0.25s ease;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
 @utility container {
   margin-inline: auto;
-  padding-inline: 2rem;
+  padding-inline: 1.5rem;
 
   @media (width >= 640px) {
     max-width: 640px;
@@ -136,62 +119,80 @@
     max-width: 1024px;
   }
   @media (width >= 1280px) {
-    max-width: 1280px;
+    max-width: 1140px;
   }
   @media (width >= 1400px) {
-    max-width: 1400px;
+    max-width: 1200px;
   }
-}
-
-@utility text-glow {
-  @apply relative;
-  text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
 }
 
 @utility text-gradient {
-  background: linear-gradient(135deg, hsl(var(--primary)), #a855f7, #ec4899);
+  background: linear-gradient(135deg, var(--primary), #60A5FA, #38BDF8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-@utility card-hover {
-  @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;
+.card-hover {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.15);
+  border-color: var(--primary);
 }
 
-@utility gradient-border {
-  @apply relative rounded-md;
-  background: linear-gradient(to right, hsl(var(--card)), hsl(var(--card)));
-  background-clip: padding-box;
-  border: 1px solid transparent;
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.375rem;
+  border-radius: 9999px;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.3);
+}
+.primary-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+  opacity: 0.95;
+}
+.primary-button:active {
+  transform: scale(0.98);
 }
 
-@utility cosmic-button {
-  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium 
-         transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
-         hover:scale-105 active:scale-95;
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.375rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  color: var(--foreground);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+.secondary-button:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background-color: var(--muted);
+}
+.secondary-button:active {
+  transform: scale(0.98);
 }
 
-@utility star {
-  @apply absolute rounded-full bg-primary/60 dark:bg-white;
-  box-shadow: 0 0 6px 1px rgba(139, 92, 246, 0.35);
-}
-
-.dark .star {
-  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.45);
-}
-
-@utility meteor {
-  @apply absolute bg-linear-to-r from-primary/80 via-primary/50 to-transparent dark:from-white dark:via-white dark:to-transparent rounded-full;
-  box-shadow: 0 0 8px 2px rgba(139, 92, 246, 0.35);
-}
-
-.dark .meteor {
-  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.35);
-}
-
-#root {
-  min-height: 100vh;
-  width: 100%;
-  margin: 0;
-  padding: 0;
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
