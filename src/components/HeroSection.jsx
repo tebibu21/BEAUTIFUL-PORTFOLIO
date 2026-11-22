@@ -14,7 +14,7 @@ export const HeroSection = () => {
             <div className="flex flex-wrap items-center gap-2.5">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-semibold">
                 <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Open to Internships &amp; Junior Roles</span>
+                <span>Open to Work &amp; Software Development Roles</span>
               </div>
 
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-border bg-card text-muted-foreground text-xs font-medium">
