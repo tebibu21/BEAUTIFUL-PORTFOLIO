@@ -98,14 +98,14 @@ export const HeroSection = () => {
               <div className="relative rounded-2xl bg-card border border-border p-3 shadow-lg max-w-[320px] sm:max-w-[340px]">
                 <div className="relative rounded-xl overflow-hidden bg-secondary aspect-square flex items-center justify-center">
                   <img
-                    src="/profile-placeholder.svg"
+                    src="/profile.png"
                     alt="Tebibu Solomon - Full-Stack & Mobile Software Developer"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
                     loading="eager"
                   />
                   <div className="absolute bottom-2 left-2 right-2 p-2.5 rounded-lg bg-background/90 backdrop-blur-md border border-border text-left">
                     <p className="text-xs font-bold text-foreground">Tebibu Solomon</p>
-                    <p className="text-[11px] text-muted-foreground">Information Science, AAU</p>
+                    <p className="text-[11px] text-muted-foreground">Software Engineer</p>
                   </div>
                 </div>
               </div>
